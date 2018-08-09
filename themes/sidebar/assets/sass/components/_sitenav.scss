@@ -1,0 +1,121 @@
+$sidenav-width: 20rem;
+$sitenav-vpadding: 2.5rem;
+$sitenav-hpadding: 2rem;
+
+// Desktop only
+body {
+	padding-left: $sidenav-width;
+}
+
+.sitenav {
+    background: $color-primary;
+    color: white;
+    font-family: $font-title;
+    overflow: auto;
+    padding: $sitenav-vpadding $sitenav-hpadding;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    box-sizing: border-box;
+
+    // Desktop only
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: $sidenav-width;
+
+
+    h1 {
+        font-size: 1.8rem;
+        font-weight: normal;
+        margin: 0;
+
+        a:hover {
+            text-decoration: underline;
+        }
+    }
+
+    h3 {
+        color: rgba(white, 0.8);
+        font-size: 1rem;
+        font-weight: normal;
+        margin-top: 0.1rem;
+        margin-bottom: 0;
+    }
+
+    h5 {
+        color: rgba(white, 0.8);
+        font-size: 0.75rem;
+        font-weight: normal;
+        text-transform: uppercase;
+        margin-bottom: 0.5rem;
+    }
+
+    a {
+        color: rgba(white, 0.9);
+        text-decoration: none;
+    }
+
+    hr {
+        border-color: rgba(white, 0.1);
+        margin: 0.5rem 0;
+    }
+
+    nav {
+        flex: 1;
+        margin-top: 2rem;
+
+        ul {
+            margin-left: -$sitenav-hpadding;
+            margin-right: -$sitenav-hpadding;
+        }
+
+        a {
+            padding: 0.5rem $sitenav-hpadding;
+            display: block;
+        }
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    li {
+        transition: 0.25s background;
+
+        &.active {
+            background: rgba(white, 0.2) !important;
+        }
+
+        &:hover {
+            background: rgba(white, 0.08);
+        }
+    }
+
+    &__icons {
+        display: flex;
+        align-self: flex-start;
+        margin-bottom: -0.5rem !important;
+
+        a {
+            display: block;
+            padding: 0.5rem 0.5rem;
+        }
+
+        li {
+            border-radius: 100%;
+        }
+
+        svg {
+            display: block;
+        }
+
+        .feather {
+            width: 20px;
+            height: 20px;
+        }
+    }
+}

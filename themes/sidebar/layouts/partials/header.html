@@ -1,0 +1,56 @@
+{{/* -*- engine:go -*- */}}
+
+{{ $currentPage := . }}
+
+<header class="sitenav sitenav--expanded">
+  <h1><a href="/">{{ .Site.Title }}</a></h1>
+  {{ with .Site.Params.subtitle }}<h3>{{ . }}</h3>{{ end }}
+
+  <nav>
+    <ul>
+      {{ range .Site.Menus.main }}
+        <li class="{{ if $currentPage.IsMenuCurrent "main" . }}active{{ end }}">
+          <a href="{{ .URL }}">
+            {{ .Name }}
+          </a>
+        </li>
+      {{ end }}
+    </ul>
+
+    <hr>
+
+    <h5>Categories</h5>
+
+    <ul>
+      {{ range $name, $taxonomy := .Site.Taxonomies.categories }}
+        {{ $url := printf "%s%s/" (relLangURL "/categories/") (urlize $name) }}
+        <li class="{{ if eq $currentPage.URL $url }}active{{ end }}">
+          <a href="{{ $url }}">{{ $name }}</a>
+        </li>
+      {{ end }}
+    </ul>
+  </nav>
+
+  <!-- Contact and RSS feed icons -->
+  <ul class="sitenav__icons">
+    {{ with .Site.Params.email }}
+      <li>
+        <a href="mailto:{{ . }}">
+          <svg class="feather feather-mail"><use href="/feather-sprite.svg#mail"></use></svg>
+        </a>
+      </li>
+    {{ end }}
+    {{ with .Site.Params.github }}
+      <li>
+        <a href="https://github.com/{{ . }}">
+          <svg class="feather feather-github"><use href="/feather-sprite.svg#github"></use></svg>
+        </a>
+      </li>
+    {{ end }}
+    <li>
+      <a href="{{ .Site.RSSLink }}">
+        <svg class="feather feather-rss"><use href="/feather-sprite.svg#rss"></use></svg>
+      </a>
+    </li>
+  </ul>
+</header>

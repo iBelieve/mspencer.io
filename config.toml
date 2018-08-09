@@ -1,4 +1,10 @@
-baseURL = "http://example.org/"
+baseURL = "http://mspencer.io/"
 languageCode = "en-us"
-title = "My New Hugo Site"
+title = "Michael Spencer"
 theme = "sidebar"
+preserveTaxonomyNames = true
+
+[params]
+subtitle = "Software Craftsman"
+email = "sonrisesoftware@gmail.com"
+github = "ibelieve"

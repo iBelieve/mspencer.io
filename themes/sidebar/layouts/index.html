@@ -1,0 +1,10 @@
+{{/* -*- engine:go -*- */}}
+
+{{ define "main" }}
+  <header><h1>Recent Posts</h1></header>
+  <section class="posts-list">
+	{{ range first 5 (where .Data.Pages "Params.static" "ne" "true") }}
+	  {{/* partial "page.html" . */}}
+	{{ end }}
+  </section>
+{{- end }}
