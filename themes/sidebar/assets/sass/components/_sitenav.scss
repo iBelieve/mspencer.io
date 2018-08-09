@@ -2,120 +2,219 @@ $sidenav-width: 20rem;
 $sitenav-vpadding: 2.5rem;
 $sitenav-hpadding: 2rem;
 
-// Desktop only
-body {
-	padding-left: $sidenav-width;
-}
+$toggle-width: 2rem;
+$toggle-height: 1.5rem;
+$toggle-thickness: 0.25rem;
 
 .sitenav {
-    background: $color-primary;
-    color: white;
-    font-family: $font-title;
-    overflow: auto;
-    padding: $sitenav-vpadding $sitenav-hpadding;
+  color: white;
+  font-family: $font-title;
+
+  &__header {
     display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    box-sizing: border-box;
-
-    // Desktop only
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: $sidenav-width;
-
+    align-items: center;
+    justify-content: space-between;
+    background-color: $color-primary;
+    height: 4rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
 
     h1 {
-        font-size: 1.8rem;
-        font-weight: normal;
-        margin: 0;
-
-        a:hover {
-            text-decoration: underline;
-        }
+      font-weight: 300;
+      font-size: 1.5em;
+      margin: 0;
     }
 
     h3 {
-        color: rgba(white, 0.8);
-        font-size: 1rem;
-        font-weight: normal;
-        margin-top: 0.1rem;
-        margin-bottom: 0;
+      display: none;
     }
+  }
 
-    h5 {
-        color: rgba(white, 0.8);
-        font-size: 0.75rem;
-        font-weight: normal;
-        text-transform: uppercase;
-        margin-bottom: 0.5rem;
-    }
-
-    a {
-        color: rgba(white, 0.9);
-        text-decoration: none;
-    }
-
-    hr {
-        border-color: rgba(white, 0.1);
-        margin: 0.5rem 0;
-    }
-
-    nav {
-        flex: 1;
-        margin-top: 2rem;
-
-        ul {
-            margin-left: -$sitenav-hpadding;
-            margin-right: -$sitenav-hpadding;
-        }
-
-        a {
-            padding: 0.5rem $sitenav-hpadding;
-            display: block;
-        }
-    }
-
-    ul {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-    }
-
-    li {
-        transition: 0.25s background;
-
-        &.active {
-            background: rgba(white, 0.2) !important;
-        }
-
-        &:hover {
-            background: rgba(white, 0.08);
-        }
-    }
-
-    &__icons {
-        display: flex;
-        align-self: flex-start;
-        margin-bottom: -0.5rem !important;
-
-        a {
-            display: block;
-            padding: 0.5rem 0.5rem;
-        }
-
-        li {
-            border-radius: 100%;
-        }
-
-        svg {
-            display: block;
-        }
-
-        .feather {
-            width: 20px;
-            height: 20px;
-        }
-    }
+  a {
+    text-decoration: none;
+  }
 }
+
+.sitenav__toggle {
+  display: block;
+  width: $toggle-width;
+  height: $toggle-height;
+  position: relative;
+  transform: rotate(0deg);
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+
+  span {
+    display: block;
+    position: absolute;
+    height: $toggle-thickness;
+    width: 100%;
+    background: white;
+    border-radius: $toggle-thickness;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: 0.25s ease-in-out;
+
+    &:nth-child(1) {
+      top: 0;
+    }
+
+    &:nth-child(2),
+    &:nth-child(3) {
+      top: calc((100% - #{$toggle-thickness})/2);
+    }
+
+    &:nth-child(4) {
+      top: calc(100% - #{$toggle-thickness});
+    }
+  }
+}
+
+#sitenav__toggle:checked + .sitenav {
+  background: blue;
+
+  .sitenav__toggle {
+    span {
+      &:nth-child(1) {
+        top: 18px;
+        width: 0%;
+        left: 50%;
+      }
+
+      &:nth-child(2) {
+        transform: rotate(45deg);
+      }
+
+      &:nth-child(3) {
+        transform: rotate(-45deg);
+      }
+
+      &:nth-child(4) {
+        top: 18px;
+        width: 0%;
+        left: 50%;
+      }
+    }
+  }
+}
+
+// Michael's old menu styles
+// TODO: Delete me someday when it's not needed
+// Desktop only
+// body {
+// 	padding-left: $sidenav-width;
+// }
+//
+// .sitenav {
+//     background: $color-primary;
+//     color: white;
+//     font-family: $font-title;
+//     overflow: auto;
+//     padding: $sitenav-vpadding $sitenav-hpadding;
+//     display: flex;
+//     flex-direction: column;
+//     align-items: stretch;
+//     box-sizing: border-box;
+//
+//     // Desktop only
+//     position: fixed;
+//     top: 0;
+//     bottom: 0;
+//     left: 0;
+//     width: $sidenav-width;
+//
+//
+//     h1 {
+//         font-size: 1.8rem;
+//         font-weight: normal;
+//         margin: 0;
+//
+//         a:hover {
+//             text-decoration: underline;
+//         }
+//     }
+//
+//     h3 {
+//         color: rgba(white, 0.8);
+//         font-size: 1rem;
+//         font-weight: normal;
+//         margin-top: 0.1rem;
+//         margin-bottom: 0;
+//     }
+//
+//     h5 {
+//         color: rgba(white, 0.8);
+//         font-size: 0.75rem;
+//         font-weight: normal;
+//         text-transform: uppercase;
+//         margin-bottom: 0.5rem;
+//     }
+//
+//     a {
+//         color: rgba(white, 0.9);
+//         text-decoration: none;
+//     }
+//
+//     hr {
+//         border-color: rgba(white, 0.1);
+//         margin: 0.5rem 0;
+//     }
+//
+//     nav {
+//         flex: 1;
+//         margin-top: 2rem;
+//
+//         ul {
+//             margin-left: -$sitenav-hpadding;
+//             margin-right: -$sitenav-hpadding;
+//         }
+//
+//         a {
+//             padding: 0.5rem $sitenav-hpadding;
+//             display: block;
+//         }
+//     }
+//
+//     ul {
+//         margin: 0;
+//         padding: 0;
+//         list-style: none;
+//     }
+//
+//     li {
+//         transition: 0.25s background;
+//
+//         &.active {
+//             background: rgba(white, 0.2) !important;
+//         }
+//
+//         &:hover {
+//             background: rgba(white, 0.08);
+//         }
+//     }
+//
+//     &__icons {
+//         display: flex;
+//         align-self: flex-start;
+//         margin-bottom: -0.5rem !important;
+//
+//         a {
+//             display: block;
+//             padding: 0.5rem 0.5rem;
+//         }
+//
+//         li {
+//             border-radius: 100%;
+//         }
+//
+//         svg {
+//             display: block;
+//         }
+//
+//         .feather {
+//             width: 20px;
+//             height: 20px;
+//         }
+//     }
+// }
